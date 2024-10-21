@@ -1,60 +1,49 @@
-import XCTest
+import Testing
 
-@testable import Lasagna
-
-class TaskExpectedMinutesInOvenTests: XCTestCase {
-  func testExpectedMinutes() {
-    XCTAssertEqual(expectedMinutesInOven, 40)
-  }
+struct TaskExpectedMinutesInOvenTestsTests {
+    @Test func testExpectedMinutesTest() {
+        #expect(expectedMinutesInOven == 40)
+    }
 }
 
-class TaskRemainingMinutesInOven: XCTestCase {
-  func testRemainingMinutes() throws {
+struct TaskRemainingMinutesInOvenTests {
+    @Test func testRemainingMinutesTest() async throws {
+        #expect(remainingMinutesInOven(elapsedMinutes: 13) == 27)
+    }
     
-    XCTAssertEqual(remainingMinutesInOven(elapsedMinutes: 13), 27)
-  }
-
-  func testRemainingMinutesWhenDone() throws {
+    @Test func testRemainingMinutesWhenDoneTest() async throws {
+        #expect(remainingMinutesInOven(elapsedMinutes: 40) == 0)
+    }
     
-    XCTAssertEqual(remainingMinutesInOven(elapsedMinutes: 40), 0)
-  }
-
-  func testRemainingMinutesWhenLessThanOne() throws {
-    
-    XCTAssertEqual(remainingMinutesInOven(elapsedMinutes: 39), 1)
-  }
+    @Test func testRemainingMinutesWhenLessThanOneTest() async throws {
+        #expect(remainingMinutesInOven(elapsedMinutes: 39) == 1)
+    }
 }
 
-class TaskPreparationTimeInMinutes: XCTestCase {
-  func testPreparationMinutes() throws {
+struct TaskPreparationTimeInMinutesTests {
+    @Test func testPreparationMinutesTest() async throws {
+        #expect(preparationTimeInMinutes(layers: 6) == 12)
+    }
     
-    XCTAssertEqual(preparationTimeInMinutes(layers: 6), 12)
-  }
-
-  func testPreparationMinutesForOneLayer() throws {
+    @Test func testPreparationMinutesForOneLayerTest() async throws {
+        #expect(preparationTimeInMinutes(layers: 1) == 2)
+    }
     
-    XCTAssertEqual(preparationTimeInMinutes(layers: 1), 2)
-  }
-
-  func testPreparationMinutesForZeroLayers() throws {
-    
-    XCTAssertEqual(preparationTimeInMinutes(layers: 0), 0)
-  }
+    @Test func testPreparationMinutesForZeroLayersTest() async throws {
+        #expect(preparationTimeInMinutes(layers: 0) == 0)
+    }
 }
 
-class TaskTotalTimeInMinutes: XCTestCase {
-  func testTotalMinutes() throws {
+struct TaskTotalTimeInMinutesTests {
+    @Test func testTotalMinutesTest() async throws {
+        #expect(totalTimeInMinutes(layers: 1, elapsedMinutes: 30) == 32)
+    }
     
-    XCTAssertEqual(totalTimeInMinutes(layers: 1, elapsedMinutes: 30), 32)
-  }
-
-  func testTotalMinutesWhenDone() throws {
+    @Test func testTotalMinutesWhenDoneTest() async throws {
+        #expect(totalTimeInMinutes(layers: 2, elapsedMinutes: 25) == 29)
+    }
     
-    XCTAssertEqual(totalTimeInMinutes(layers: 2, elapsedMinutes: 25), 29)
-  }
-
-  func testTotalMinutesWhenLessThanOne() throws {
-    
-    XCTAssertEqual(totalTimeInMinutes(layers: 4, elapsedMinutes: 8), 16)
-  }
+    @Test func testTotalMinutesWhenLessThanOneTest() async throws {
+        #expect(totalTimeInMinutes(layers: 4, elapsedMinutes: 8) == 16)
+    }
 }
