@@ -1,4 +1,5 @@
 import Testing
+@testable import Lasagna
 
 struct TaskExpectedMinutesInOvenTestsTests {
     @Test func testExpectedMinutesTest() {
